@@ -5,6 +5,7 @@ Class to manage the API authentication
 from flask import request
 from typing import TypeVar, List
 
+
 class Auth:
     '''
     manage the API authentication
@@ -18,8 +19,8 @@ class Auth:
             if path.startswith(excluded_path):
                 return False
         return True
-    
-    
+
+
     def authorization_header(self, request=None) -> str:
         ''' def authorization_header '''
         if request is None:
@@ -30,6 +31,7 @@ class Auth:
 
 
     def current_user(self, request=None) -> TypeVar('User'):
-        ''' def current_user '''
+        ''' def current_user 
+        '''
         return None
      
