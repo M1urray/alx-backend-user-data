@@ -10,6 +10,7 @@ from typing import TypeVar, List
 class Auth:
     '''manage the API authentication
     '''
+
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
         """Checks whether a path requires authentication.
         """
@@ -26,7 +27,6 @@ class Auth:
                     return False
         return True
 
-
     def authorization_header(self, request=None) -> str:
         """Gets the authorization header field from the request.
         """
@@ -35,7 +35,6 @@ class Auth:
         if 'Authorization' not in request.headers:
             return None
         return request.headers['Authorization']
-
 
     def current_user(self, request=None) -> TypeVar('User'):
         """Gets the current user from the request.
