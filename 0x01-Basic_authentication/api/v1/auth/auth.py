@@ -28,7 +28,7 @@ class Auth:
 
 
     def authorization_header(self, request=None) -> str:
-        """def authorization_header
+        """Gets the authorization header field from the request.
         """
         if request is None:
             return None
@@ -38,6 +38,6 @@ class Auth:
 
 
     def current_user(self, request=None) -> TypeVar('User'):
-        ''' def current_user 
-        '''
+        """Gets the current user from the request.
+        """
         return None
