@@ -41,4 +41,3 @@ class Auth:
         ''' def current_user 
         '''
         return None
-     
