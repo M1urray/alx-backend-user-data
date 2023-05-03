@@ -2,6 +2,7 @@
 """
 Class to manage the API authentication
 """
+import re
 from flask import request
 from typing import TypeVar, List
 
@@ -13,17 +14,17 @@ class Auth:
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
         """Checks whether a path requires authentication.
         """
-        if path is None:
-            return True
-        if excluded_paths is None:
-            return True
-        if len(excluded_paths) == 0:
-            return True
-        if path is None or excluded_paths is None:
-            return True
-        path = path + '/' if path[-1] != '/' else path
-        if path in excluded_paths:
-            return False
+        if path is not None and excluded_paths is not None:
+            for exclusion_path in map(lambda x: x.strip(), excluded_paths):
+                pattern = ''
+                if exclusion_path[-1] == '*':
+                    pattern = '{}.*'.format(exclusion_path[0:-1])
+                elif exclusion_path[-1] == '/':
+                    pattern = '{}/*'.format(exclusion_path[0:-1])
+                else:
+                    pattern = '{}/*'.format(exclusion_path)
+                if re.match(pattern, path):
+                    return False
         return True
 
 
