@@ -13,11 +13,17 @@ class Auth:
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
         """Checks whether a path requires authentication.
         """
-        if not path or not excluded_paths:
+        if path is None:
             return True
-        for excluded_path in excluded_paths:
-            if path.startswith(excluded_path):
-                return False
+        if excluded_paths is None:
+            return True
+        if len(excluded_paths) == 0:
+            return True
+        if path is None or excluded_paths is None:
+            return True
+        path = path + '/' if path[-1] != '/' else path
+        if path in excluded_paths:
+            return False
         return True
 
 
