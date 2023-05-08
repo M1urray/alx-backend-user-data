@@ -5,7 +5,7 @@ and storage support module for the API.
 from flask import request
 from datetime import datetime, timedelta
 
-from .models.user_session import UserSession
+from models.user_session import UserSession
 from .session_exp_auth import SessionExpAuth
 
 
